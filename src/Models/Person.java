@@ -12,4 +12,16 @@ public class Person {
         this.age = age;
         this.borrowedBooks = new ArrayList();
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public ArrayList<Book> getBorrowedBooks() {
+        return borrowedBooks;
+    }
 }
