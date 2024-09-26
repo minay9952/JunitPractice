@@ -1,5 +1,6 @@
 package Models;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Book {
@@ -8,8 +9,8 @@ public class Book {
     private String author;
     private int pages;
     private int copies;
-    private Date borrowDate;
-    private Date returnDate;
+    private LocalDate borrowDate;
+    private LocalDate returnDate;
 
     public Book(String isbn, String title, String author, int pages, int copies){
         this.isbn = isbn;
@@ -45,11 +46,19 @@ public class Book {
         return copies;
     }
 
-    public Date getBorrowDate() {
+    public LocalDate getBorrowDate() {
         return borrowDate;
     }
 
-    public Date getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
+    }
+
+    public void setBorrowDate(LocalDate borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
     }
 }

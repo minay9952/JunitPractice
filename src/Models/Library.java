@@ -1,10 +1,8 @@
 package Models;
 
-import Exceptions.BookExistException;
-import Exceptions.BookNotFoundException;
-import Exceptions.MemberExistException;
-import Exceptions.MemberNotFoundException;
+import Exceptions.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Library {
@@ -142,5 +140,106 @@ public class Library {
         }
         // book not found. throw exception
         throw new BookNotFoundException("There is no book found with the isbn provided");
+    }
+
+    /*
+    * Search for a member in the library with the name
+    * @param name the name of the member to search for.
+    * @Return the member searching for if found
+    * @throws MemberNotFoundException if the member doesn't exist in the library
+    * */
+    public Person searchMember(String name) throws MemberNotFoundException {
+        // search for the member
+        for(int i=0; i < this.members.size(); i++){
+            if(name.equals(this.members.get(i).getName()))
+                // member found
+                return this.members.get(i);
+        }
+        // member not found
+        throw new MemberNotFoundException("There is no member found with the name provided");
+    }
+
+    /*
+    * Borrows a book for a member
+    * @param isbn the isbn of the book to be borrowed
+    * @param name the name of the member who will borrow the book
+    * @return confirmation message if the book is borrowed successfully
+    * @throws BookNotFoundException if the book is not found
+    * @throws MemberNotFoundException if the member is not found
+    * @throws OutOfBookCopiesException if no available copies of the book
+    * */
+    public String borrowBook(String isbn, String name) throws Exception {
+        Book book = searchBookByIsbn(isbn);
+        Person member = searchMember(name);
+        //check if there is no copies of the book available
+        if(book.getCopies() < 1)
+            // no copies available
+            throw  new OutOfBookCopiesException("There are no available copies of this book");
+        // borrow book
+        book.setCopies(book.getCopies() - 1);
+        return member.borrowBook(book);
+    }
+
+    /*
+    * Borrows a book for a member and specify a return date
+    * @param isbn the isbn of the book to be borrowed
+    * @param name the name of the member who will borrow the book
+    * @param date the return date of the book
+    * @return confirmation message in case book is borrowed successfully
+    * @throws BookNotFoundException if the book is not found
+    * @throws MemberNotFoundException if the member is not found
+    * @throws OutOfBookCopiesException if no available copies of the book
+    * @throws ExpiredDateException if the date provided is before today
+    * */
+    public String borrowBook(String isbn, String name, LocalDate date) throws Exception{
+        Book book = searchBookByIsbn(isbn);
+        Person member = searchMember(name);
+        //check if there is no copies of the book available
+        if(book.getCopies() < 1)
+            // no copies available
+            throw  new OutOfBookCopiesException("There are no available copies of this book");
+        // check if the provided date is older than today
+        if(date.isBefore(LocalDate.now()))
+            // date older than today
+            throw new ExpiredDateException("The provided date is older than today");
+        // borrow book
+        book.setCopies(book.getCopies() - 1);
+        return member.borrowBook(book, date);
+    }
+
+    /*
+    * returns a borrowed book by a member back to the library
+    * @param isbn the isbn of the book to be returned
+    * @param name the name of the member who is borrowing the book
+    * @return confirmation message in case book returned successfully
+    * @throws MemberNotFoundException
+    * @throws BookNotFoundException if the book to be returned is not borrowed by the provided member or no book is found with the isbn provided
+    * */
+    public String returnBook(String isbn, String name) throws Exception {
+        Book book = searchBookByIsbn(isbn);
+        Person member = searchMember(name);
+
+        // increase book copies in the library
+        book.setCopies(book.getCopies() + 1);
+        return member.returnBook(isbn);
+    }
+
+    /*
+    * returns all the books borrowed by a member
+    * @param name the name of the member to return all the borrowed books
+    * @returns conformation message in case all books are returned successfully
+    * @throws MemberNotFoundException if there is no member with the name provided
+    * @throws BookNotFoundException if one or more borrowed books are not from this library
+    * */
+    public String returnAllBooks(String name) throws Exception {
+        Person member = searchMember(name);
+        // search for each borrowed book and increase their copies
+        ArrayList<Book> membersBooks = member.getBorrowedBooks();
+        for(int i=0; i < membersBooks.size(); i++){
+            Book book = searchBookByIsbn(membersBooks.get(i).getIsbn());
+            book.setCopies(book.getCopies() + 1);
+        }
+        member.returnAllBooks();
+        return "Books Returned Successfully";
     }
 }
