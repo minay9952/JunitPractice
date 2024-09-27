@@ -100,10 +100,11 @@ public class Library {
     public String addCopies(String isbn, int copies) throws BookNotFoundException {
         // search for a book with the provided isbn
         for(int i=0; i < this.books.size(); i++){
-            if(isbn.equals(this.books.get(i).getIsbn()))
+            if(isbn.equals(this.books.get(i).getIsbn())) {
                 // book found. increment book's copies.
                 this.books.get(i).setCopies(this.books.get(i).getCopies() + copies);
                 return "Copies added Successfully";
+            }
         }
         // book not found. throw exception
         throw new BookNotFoundException("There is no book found with the isbn provided");

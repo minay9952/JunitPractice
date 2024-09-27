@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7fe4300-6dd7-4f6a-a9a3-58b497001eaa" name="Changes" comment="book adding, removing, search, and copies adding with exception">
-      <change afterPath="$PROJECT_DIR$/src/Test/LibraryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Exceptions/BookNotBorrowedException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JunitPractice.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JunitPractice.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Models/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Library.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test/LibraryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/LibraryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,8 +42,8 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.LibraryTest.searchNonExistingBookByTitle">
-    <configuration name="LibraryTest.addCopiesToExistingBook" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.LibraryTest">
+    <configuration name="LibraryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JunitPractice" />
       <extension name="coverage">
         <pattern>
@@ -52,13 +53,28 @@
       </extension>
       <option name="PACKAGE_NAME" value="Test" />
       <option name="MAIN_CLASS_NAME" value="Test.LibraryTest" />
-      <option name="METHOD_NAME" value="addCopiesToExistingBook" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LibraryTest.addCopiesToNonExistingBook" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JunitPractice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Test" />
+      <option name="MAIN_CLASS_NAME" value="Test.LibraryTest" />
+      <option name="METHOD_NAME" value="addCopiesToNonExistingBook" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LibraryTest.removeExistingBook" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LibraryTest.existingMemberReturnAllBooks" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JunitPractice" />
       <extension name="coverage">
         <pattern>
@@ -68,13 +84,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="Test" />
       <option name="MAIN_CLASS_NAME" value="Test.LibraryTest" />
-      <option name="METHOD_NAME" value="removeExistingBook" />
+      <option name="METHOD_NAME" value="existingMemberReturnAllBooks" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LibraryTest.removeNonExistingBook" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LibraryTest.existingMemberReturnsAllBooksWithNonExistingBook" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JunitPractice" />
       <extension name="coverage">
         <pattern>
@@ -84,13 +100,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="Test" />
       <option name="MAIN_CLASS_NAME" value="Test.LibraryTest" />
-      <option name="METHOD_NAME" value="removeNonExistingBook" />
+      <option name="METHOD_NAME" value="existingMemberReturnsAllBooksWithNonExistingBook" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LibraryTest.searchExistingBookByTitle" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LibraryTest.nonExistingMemberReturnAllBooks" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JunitPractice" />
       <extension name="coverage">
         <pattern>
@@ -100,23 +116,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="Test" />
       <option name="MAIN_CLASS_NAME" value="Test.LibraryTest" />
-      <option name="METHOD_NAME" value="searchExistingBookByTitle" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LibraryTest.searchNonExistingBookByTitle" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="JunitPractice" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Test" />
-      <option name="MAIN_CLASS_NAME" value="Test.LibraryTest" />
-      <option name="METHOD_NAME" value="searchNonExistingBookByTitle" />
+      <option name="METHOD_NAME" value="nonExistingMemberReturnAllBooks" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -124,11 +124,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LibraryTest.searchNonExistingBookByTitle" />
-        <item itemvalue="JUnit.LibraryTest.searchExistingBookByTitle" />
-        <item itemvalue="JUnit.LibraryTest.addCopiesToExistingBook" />
-        <item itemvalue="JUnit.LibraryTest.removeNonExistingBook" />
-        <item itemvalue="JUnit.LibraryTest.removeExistingBook" />
+        <item itemvalue="JUnit.LibraryTest" />
+        <item itemvalue="JUnit.LibraryTest.addCopiesToNonExistingBook" />
+        <item itemvalue="JUnit.LibraryTest.existingMemberReturnsAllBooksWithNonExistingBook" />
+        <item itemvalue="JUnit.LibraryTest.nonExistingMemberReturnAllBooks" />
+        <item itemvalue="JUnit.LibraryTest.existingMemberReturnAllBooks" />
       </list>
     </recent_temporary>
   </component>

@@ -1,5 +1,6 @@
 package Models;
 
+import Exceptions.BookNotBorrowedException;
 import Exceptions.BookNotFoundException;
 import Exceptions.MaximumBorrowedBooksExceededException;
 import Exceptions.MemberOverdueBooksException;
@@ -54,7 +55,7 @@ public class Person {
         else{
             // check if the member has any overdue books
             for(int i=0; i < this.borrowedBooks.size(); i++){
-                if(this.borrowedBooks.get(i).getReturnDate().isAfter(LocalDate.now()))
+                if(this.borrowedBooks.get(i).getReturnDate().isBefore(LocalDate.now()))
                     // has overdue books
                     throw new MemberOverdueBooksException("This member has overdue books");
             }
@@ -84,7 +85,7 @@ public class Person {
         else{
             // check if the member has any overdue books
             for(int i=0; i < this.borrowedBooks.size(); i++){
-                if(this.borrowedBooks.get(i).getReturnDate().isAfter(LocalDate.now()))
+                if(this.borrowedBooks.get(i).getReturnDate().isBefore(LocalDate.now()))
                     // has overdue books
                     throw new MemberOverdueBooksException("This member has overdue books");
             }
@@ -103,7 +104,7 @@ public class Person {
     * @returns a confirmation message in case book returned successfully
     * @throws BookNotFoundException if the book is not borrowed by this member
     * */
-    public String returnBook(String isbn) throws BookNotFoundException {
+    public String returnBook(String isbn) throws BookNotBorrowedException {
         // search for the book to be returned
         for(int i=0; i < this.borrowedBooks.size(); i++){
             if(this.borrowedBooks.get(i).getIsbn().equals(isbn)){
@@ -112,7 +113,7 @@ public class Person {
                 return "Book Returned Successfully";
             }
         }
-        throw new BookNotFoundException("This book is not borrowed by the provided member");
+        throw new BookNotBorrowedException("This book is not borrowed by the provided member");
     }
 
     /*
